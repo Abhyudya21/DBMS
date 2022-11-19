@@ -1,0 +1,12 @@
+declare 
+n number :=0;
+begin
+loop
+dbms_output.put_line('The value of n inside the loop is: '|| TO_CHAR(n));
+n := n+1;
+if n>5 then
+exit;
+end if;
+end loop;
+dbms_output.put_line('The value of n outside the loop is: '|| TO_CHAR(n));
+end;
