@@ -1,0 +1,22 @@
+CREATE TABLE emp(employee_id int, first_name varchar(10), last_name varchar(10), email varchar(30));
+insert into emp values(101,'BALRAM','PATEL','balram@gmail.com');
+insert into emp values(102,'BANTI','SHARMA','banti1@gmail.com');
+CREATE TABLE emp_temp AS
+SELECT employee_id, first_name, last_name
+FROM emp;
+CREATE OR REPLACE PROCEDURE test_proc(z_emp_id NUMBER)
+AUTHID DEFINER AS
+BEGIN
+DELETE FROM emp_temp
+WHERE employee_id = z_emp_id;
+IF SQL%FOUND THEN
+DBMS_OUTPUT.PUT_LINE ('Delete succeeded for employee_id: '|| z_emp_id);
+ELSE
+DBMS_OUTPUT.PUT_LINE ('No employee of ID '|| z_emp_id||'is found.');
+END IF;
+END;
+/
+BEGIN
+test_proc(95);
+test_proc(101);
+END;
