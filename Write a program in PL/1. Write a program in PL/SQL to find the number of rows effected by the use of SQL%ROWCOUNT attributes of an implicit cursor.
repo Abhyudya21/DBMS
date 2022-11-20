@@ -1,0 +1,12 @@
+CREATE TABLE emp(employee_id int, first_name varchar(10), last_name varchar(10), email varchar(30));
+insert into emp values(101,'Ayush','Sharma','ayush@gmail.com');
+insert into emp values(102,'Pankaj','Rishi','pankaj@gmail.com');
+CREATE TABLE emp_temp AS
+SELECT employee_id, first_name, last_name, email
+FROM emp;
+BEGIN
+UPDATE emp_temp
+SET email= 'Not Available'
+WHERE first_name LIKE 'B%';
+DBMS_OUTPUT.PUT_LINE('Number of record updated: '||To_char(SQL%rowcount));
+end;
