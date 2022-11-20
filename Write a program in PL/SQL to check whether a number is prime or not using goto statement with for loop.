@@ -1,0 +1,17 @@
+DECLARE
+  msg  VARCHAR2(30);
+  n  PLS_INTEGER := 12;
+BEGIN
+  FOR i in 2..ROUND(SQRT(n)) LOOP
+    IF n MOD i = 0 THEN
+      msg := ' is not a prime number';
+      GOTO when_prime;
+    END IF;
+  END LOOP;
+
+  msg := ' is a prime number';
+ 
+  <<when_prime>>
+  DBMS_OUTPUT.PUT_LINE(TO_CHAR(n) || msg);
+END;
+/
